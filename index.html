@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi E-Commerce</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Login/Registro Modal -->
+    <div id="auth-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;">
+      <div style="background:#fff;padding:2rem;border-radius:10px;min-width:300px;max-width:90vw;">
+        <div id="login-section">
+          <h2 class="mb-3">Iniciar sesión</h2>
+          <form id="login-form">
+            <input type="email" id="login-email" placeholder="Email" required class="form-control my-2" />
+            <input type="password" id="login-password" placeholder="Contraseña" required class="form-control my-2" />
+            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+          </form>
+          <p class="mt-3 text-center">¿No tienes cuenta? <a href="#" id="show-register">Regístrate</a></p>
+        </div>
+        <div id="register-section" style="display:none;">
+          <h2 class="mb-3">Registro</h2>
+          <form id="register-form">
+            <input type="text" id="register-nombre" placeholder="Nombre" required class="form-control my-2" />
+            <input type="text" id="register-apellido" placeholder="Apellido" required class="form-control my-2">
+            <input type="email" id="register-email" placeholder="Email" required class="form-control my-2" />
+            <input type="password" id="register-password" placeholder="Contraseña" required class="form-control my-2" />
+            <button type="submit" class="btn btn-success w-100">Crear cuenta</button>
+          </form>
+          <p class="mt-3 text-center">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
+        </div>
+      </div>
+    </div>
+
+    <header class="d-flex justify-content-between align-items-center p-3 bg-light">
+      <img width="30" height="30"
+        src="images/tecnologia-en-la-nube.png" alt="Logo"/>
+      <nav>
+        <ul class="menu d-flex list-unstyled gap-3">
+          <li class="itemMenu"><a href="#inicio" class="nav-item">Inicio</a></li>
+          <li class="itemMenu"><a href="#productos" class="nav-item" onclick="mostrarProductos()">Productos</a></li>
+          <li class="itemMenu"><a href="#carrito" class="nav-item">Carrito (<span id="cart-counter">0</span>)</a></li>
+          <li class="itemMenu"><a href="#pedidos" class="nav-item">Pedidos</a></li>
+          <li class="itemMenu"><a href="#auth-overlay" class="nav-item">Salir</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="portada text-center p-5">
+        <h1>Techno Life</h1>
+        <p>Bienvenido a nuestra tienda online. Disfrutá nuestros productos.</p>
+      </section>
+
+      <section id="productos" class="contenedorCards container my-5" style="display: none;">
+        <h2 class="text-center">Productos</h2>
+        <div id="productos-container" class="d-flex flex-wrap justify-content-around gap-3">
+          <!-- Productos serán insertados aquí -->
+        </div>
+      </section>
+
+      <section id="formulario-admin" class="container my-5">
+        <h2>Agregar nuevo producto</h2>
+        <form id="form-agregar-producto" class="row g-3">
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre" required />
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="descripcion" placeholder="Descripción" required />
+          </div>
+          <div class="col-md-6">
+            <input type="number" class="form-control" id="precio" placeholder="Precio" step="0.01" required />
+          </div>
+          <div class="col-md-6">
+            <input type="number" class="form-control" id="stock" placeholder="Stock" required />
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="carrito" class="contenedorCarrito container my-5">
+        <h2>Carrito</h2>
+        <ul id="carrito-items" class="list-group">
+          <!-- Items del carrito serán insertados aquí -->
+        </ul>
+        <div class="mt-3">
+          <button id="vaciar-carrito" class="btn btn-danger">Vaciar Carrito</button>
+          <button id="realizar-pedido" class="btn btn-primary">Realizar Pedido</button>
+        </div>
+        <div class="total mt-3">
+          <p>Total: <span id="carrito-total">$0</span></p>
+        </div>
+      </section>
+
+      <section id="pedidos" class="container my-5">
+        <h2>Historial de Pedidos</h2>
+        <div id="lista-pedidos">
+          <!-- Pedidos serán insertados aquí -->
+        </div>
+      </section>
+    </main>
+
+    <footer id="redes-sociales" class="bg-light p-4 mt-5 d-flex justify-content-between align-items-center">
+      <img
+        src="images/tecnologia-en-la-nube.png"
+        width="100"
+        height="100"
+        alt="Logo"
+      />
+      <div class="d-flex gap-4">
+        <a href="https://www.facebook.com" target="_blank">
+          <img src="images/Facebook_Logo_(2019).png" width="30" height="30" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="images/Instagram_icon.png" width="30" height="30" alt="Instagram" />
+        </a>
+        <a href="https://www.x.com" target="_blank">
+          <img src="images/png-transparent-twitter-x-logo.png" width="30" height="30" alt="Twitter" />
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      function mostrarProductos() {
+        document.getElementById("productos").style.display = "block";
+        // Aquí podés llamar a tu función para cargar productos con fetch
+        if (typeof cargarProductosDesdeAPI === 'function') {
+          cargarProductosDesdeAPI();
+        }
+      }
+    </script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+      document.body.classList.remove('logueado');
+      localStorage.removeItem('cliente');
+    </script>
+  </body>
+</html>

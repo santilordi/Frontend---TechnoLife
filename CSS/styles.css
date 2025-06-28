@@ -1,0 +1,213 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  min-height: 100vh;
+  color: #222;
+}
+
+/* Ocultar contenido si no está logueado */
+body:not(.logueado) main,
+body:not(.logueado) header,
+body:not(.logueado) footer {
+  display: none !important;
+}
+
+/* Navbar */
+header {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 0 0 16px 16px;
+  margin-bottom: 20px;
+}
+
+.menu{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.menu .nav-item {
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none; /* Quita el subrayado */
+}
+.menu .nav-item:hover {
+  background: #007bff;
+  color: #fff !important;
+  text-decoration: none; /* Quita el subrayado también al hover */
+}
+
+/* Botones */
+.btn,
+.btn-link,
+.btn-primary,
+.btn-danger,
+.btn-success {
+  color: #fff !important;
+  background: linear-gradient(90deg, #007bff 60%, #0056b3 100%) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 500;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+}
+.btn-danger {
+  background: linear-gradient(90deg, #dc3545 60%, #a71d2a 100%) !important;
+}
+.btn-success {
+  background: linear-gradient(90deg, #28a745 60%, #218838 100%) !important;
+}
+.btn:hover,
+.btn-link:hover,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-success:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 16px rgba(0,123,255,0.12);
+}
+
+/* Cards de productos */
+.card {
+  margin: 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  background: #fff;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,123,255,0.10);
+}
+.card img {
+  filter: grayscale(0%);
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #f0f4f8;
+}
+
+/* Contenedor de productos */
+#productos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 24px;
+}
+
+/* Cards tamaño */
+.card {
+  flex: 1 1 220px;
+  max-width: 320px;
+  min-width: 220px;
+}
+
+/* Carrito */
+#carrito-items .card {
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+}
+#carrito-items .card img {
+  max-height: 50px;
+  margin-right: 10px;
+}
+
+/* Formulario admin */
+#formulario-admin {
+  background: #f4f8fb;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 32px 24px;
+  margin-bottom: 32px;
+}
+#formulario-admin h2 {
+  color: #007bff;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+#formulario-admin input,
+#formulario-admin select {
+  border-radius: 8px !important;
+  border: 1px solid #b6c2d1 !important;
+  background: #fff !important;
+  margin-bottom: 12px;
+}
+
+/* Portada */
+.portada {
+  background: linear-gradient(120deg, #007bff 0%, #6bc1ff 100%);
+  color: #fff;
+  border-radius: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 12px rgba(0,123,255,0.08);
+}
+.portada h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.portada p {
+  font-size: 1.2rem;
+  margin-top: 12px;
+}
+
+/* Pedidos */
+#lista-pedidos .card {
+  border-left: 6px solid #007bff;
+  background: #f8fafc;
+}
+
+/* Footer */
+footer {
+  background: #f8f9fa;
+  padding: 40px 0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+}
+footer .text-uppercase {
+  font-weight: 700;
+}
+footer ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+footer ul li a {
+  color: #343a40;
+  text-decoration: none;
+}
+footer ul li a:hover {
+  color: #007bff;
+}
+footer .bg-dark {
+  background-color: #343a40 !important;
+  padding: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #productos-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    max-width: 95vw;
+  }
+  #formulario-admin {
+    padding: 16px 8px;
+  }
+}
+@media (max-width: 768px) {
+  .portada {
+    font-size: 1.1rem;
+    padding: 24px 8px;
+  }
+  #formulario-admin {
+    margin-bottom: 16px;
+  }
+  footer {
+    padding: 20px 0;
+  }
+}
