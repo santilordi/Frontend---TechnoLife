@@ -16,6 +16,10 @@ function mostrarProductosEnPantalla(productos) {
   const contenedor = document.getElementById("productos-container");
   contenedor.innerHTML = "";
 
+  // Obtiene el usuario actual
+  const cliente = getClienteActual();
+  const esAdmin = cliente && cliente.rol && cliente.rol.toUpperCase() === "ADMIN";
+
   productos.forEach((producto) => {
     contenedor.innerHTML += `
       <div class="card" style="width: 18rem;">
@@ -26,7 +30,8 @@ function mostrarProductosEnPantalla(productos) {
           <p class="card-text">Precio: $${producto.precio}</p>
           <p class="card-text">Stock: ${producto.stock}</p>
           <button class="btn btn-primary" onclick="agregarAlCarrito(${producto.id}, '${producto.nombre}', '${producto.precio}')">Agregar al carrito</button>
-        </div>
+          ${esAdmin ? `<button class="btn btn-danger ms-2" onclick="eliminarProducto(${producto.id})">Eliminar</button>` : ""}
+          </div>
       </div>
     `;
   });
@@ -42,6 +47,20 @@ function agregarAlCarrito(id, nombre, precio) {
   }
   guardarCarrito(carrito);
   actualizarCarrito();
+}
+
+//Funcion eliminar producto
+function eliminarProducto(id){
+  if (!confirm("Seguro que deseas eliminar este producto?")) return;
+  fetch(`http://localhost:8080/api/productos/${id}`, {
+    method: "DELETE"
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("No se pudo eliminar el producto");
+      alert("Producto eliminado correctamente");
+      cargarProductosDesdeAPI();
+    })
+    .catch(err => alert(err.message));
 }
 
 function actualizarCarrito() {
